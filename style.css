@@ -392,6 +392,8 @@ header{
     overflow:hidden;
     position:relative;
     counter-increment:plate;
+    display:block;
+    cursor:pointer;
 }
 
 .project-card img{
