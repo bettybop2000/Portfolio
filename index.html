@@ -3,223 +3,962 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fola Dada | Creative Designer</title>
+    <title>Olufolajimi Dada — Graphic Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --black: #080808;
+            --dark: #0d0d0d;
+            --dark2: #111111;
+            --gold: #c9a96e;
+            --red: #8b0000;
+            --red-bright: #c0392b;
+            --white: #ffffff;
+            --gray: #666666;
+            --light-gray: #999999;
+        }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8,8,8,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--gold); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 40px 80px;
+            background: var(--black);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(139,0,0,0.08) 0%, transparent 70%);
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-pre {
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 8px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary { background: var(--gold); color: #000; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* SECTIONS */
+        section { padding: 120px 40px; }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-pre {
+            text-align: center;
+            font-size: 0.65rem;
+            letter-spacing: 6px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+        }
+
+        /* ABOUT */
+        .about { background: var(--dark2); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+        }
+
+        .about-text .lead {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .about-stats { display: flex; flex-direction: column; gap: 30px; }
+
+        .stat { border-bottom: 1px solid rgba(201,169,110,0.2); padding-bottom: 25px; }
+        .stat-number { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--white); margin-bottom: 8px; }
+        .stat-label { font-size: 0.65rem; color: var(--gold); text-transform: uppercase; letter-spacing: 3px; }
+
+        /* SKILLS */
+        .skills { background: var(--black); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--dark2);
+            padding: 40px 30px;
+            border: 1px solid rgba(201,169,110,0.1);
+            transition: border-color 0.3s;
+        }
+
+        .skill-card:hover { border-color: rgba(201,169,110,0.4); }
+
+        .skill-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .skill-card ul { list-style: none; }
+        .skill-card ul li {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            letter-spacing: 1px;
+        }
+
+        /* PROJECTS */
+        .projects { background: var(--dark2); }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2px;
+        }
+
+        .project-card {
+            background: var(--dark);
+            border: 1px solid rgba(201,169,110,0.1);
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .project-card:hover { border-color: rgba(201,169,110,0.4); }
+
+        .project-img {
+            aspect-ratio: 4/3;
+            background: var(--dark2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .project-placeholder {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: rgba(201,169,110,0.3);
+        }
+
+        .project-info { padding: 30px; }
+
+        .project-tag {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .project-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .project-info p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(201,169,110,0.4);
+            padding-bottom: 2px;
+        }
+
+        /* SERVICES */
+        .services { background: var(--black); }
+
+        .services-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: -40px auto 80px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2px;
+            margin-bottom: 80px;
+        }
+
+        .package-card {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.15);
+            padding: 50px 40px;
+            transition: border-color 0.3s;
+            position: relative;
+        }
+
+        .package-card:hover { border-color: rgba(201,169,110,0.5); }
+
+        .package-card.featured {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(201,169,110,0.05) 0%, var(--dark2) 100%);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: #000;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            padding: 5px 16px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .package-name {
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .package-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--white);
+            margin: 20px 0 5px;
+            letter-spacing: 2px;
+        }
+
+        .package-turnaround {
+            font-size: 0.7rem;
+            color: var(--gray);
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .package-desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .package-features { list-style: none; margin-bottom: 40px; }
+
+        .package-features li {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            letter-spacing: 0.5px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .package-features li::before {
+            content: '—';
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ADDONS */
+        .addons-section { margin-bottom: 80px; }
+
+        .addons-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .addons-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .addons-header p {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2px;
+        }
+
+        .addon-item {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.1);
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: border-color 0.3s;
+        }
+
+        .addon-item:hover { border-color: rgba(201,169,110,0.3); }
+
+        .addon-name {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.5px;
+        }
+
+        .addon-price {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 300;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+
+        /* HOW IT WORKS */
+        .how-it-works {
+            max-width: 800px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+
+        .how-it-works h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .how-it-works p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2px;
+        }
+
+        .step {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.1);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .step-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: rgba(201,169,110,0.3);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        .services-cta {
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.2);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-cta h3 {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .services-cta p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        /* CONTACT */
+        .contact { background: var(--dark2); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .contact-info p { font-size: 0.85rem; color: var(--gray); margin-bottom: 20px; line-height: 1.7; }
+
+        .contact-email {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(201,169,110,0.4);
+            padding-bottom: 3px;
+        }
+
+        .social-links { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+        .social-link {
+            padding: 20px;
+            background: var(--dark);
+            border: 1px solid rgba(201,169,110,0.15);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .footer p { font-size: 0.75rem; color: var(--gray); margin-bottom: 8px; }
+
+        .footer-script {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.3rem;
+            color: rgba(201,169,110,0.4);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            section { padding: 80px 25px; }
+            .nav-container { padding: 18px 25px; }
+            .nav-menu { display: none; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .packages-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ================= NAVIGATION ================= -->
-
-    <header>
-        <nav class="navbar">
-
-            <h2 class="logo">BOPSTAR</h2>
-
-            <ul class="nav-links">
-
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Olufolajimi</div>
+            <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
-
                 <li><a href="#about">About</a></li>
-
                 <li><a href="#skills">Skills</a></li>
-
                 <li><a href="#projects">Projects</a></li>
-
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
-
             </ul>
+        </div>
+    </nav>
 
-        </nav>
-    </header>
-
-    <!-- ================= HERO ================= -->
-
+    <!-- HERO -->
     <section id="home" class="hero">
-
-        <div class="hero-text">
-
-            <p class="intro">Hello, I'm</p>
-
-            <h1>Fola Dada</h1>
-
-            <h2>Creative Designer & Front-End Developer</h2>
-
-            <p class="hero-description">
-                I create memorable brands, digital experiences,
-                illustrations, websites and visual identities that
-                combine creativity with thoughtful design.
-            </p>
-
-            <a href="#projects" class="btn">
-                View My Work
-            </a>
-
+        <div class="hero-content">
+            <p class="hero-pre">Graphic Designer — London</p>
+            <h1>OLUFOLAJIMI<br>DADA</h1>
+            <p class="hero-sub">Brand. Identity. Experience.</p>
+            <p class="hero-desc">Self-taught graphic designer specialising in brand identity, packaging, UI/UX and social design for beauty, tech and food brands.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View Work</a>
+                <a href="#services" class="btn btn-secondary">Work With Me</a>
+            </div>
         </div>
-
-        <div class="hero-image">
-
-            <!-- Replace later with your favourite artwork -->
-            <img src="images/profile.png"
-                 alt="Creative illustration of Fola">
-
-        </div>
-
     </section>
 
-    <!-- ================= ABOUT ================= -->
-
+    <!-- ABOUT -->
     <section id="about" class="about">
-
-        <h2>About Me</h2>
-
-        <p>
-            I'm a multidisciplinary creative designer with a passion for
-            branding, illustration, UI/UX, fashion, and front-end development.
-            I enjoy transforming ideas into meaningful visual experiences that
-            balance creativity with functionality.
-        </p>
-
+        <div class="container">
+            <p class="section-pre">The Designer</p>
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="lead">Design is not decoration. It is the difference between a brand people remember and one they forget.</p>
+                    <p>Self-taught graphic designer with 2 years delivering original visual identity, packaging and digital design across beauty, fashion, tech and food. Founder of Bopstar — a personal brand built from the ground up as a real world case study in brand identity, content and creative direction.</p>
+                    <p>Proficient in Adobe Creative Suite and Figma. Comfortable owning projects from concept through delivery. Brings a fashion industry perspective from London Fashion Week and luxury retail experience.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat"><span class="stat-number">2+ Years</span><span class="stat-label">Design Experience</span></div>
+                    <div class="stat"><span class="stat-number">Brand Identity</span><span class="stat-label">Core Specialism</span></div>
+                    <div class="stat"><span class="stat-number">London</span><span class="stat-label">Based. Global.</span></div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- ================= SKILLS ================= -->
-
+    <!-- SKILLS -->
     <section id="skills" class="skills">
-
-        <h2>Skills</h2>
-
-        <div class="skills-container">
-
-            <div class="skill-card">
-                <h3>Design</h3>
-                <p>Adobe Creative Suite</p>
-                <p>Figma</p>
-                <p>Procreate</p>
+        <div class="container">
+            <p class="section-pre">Capabilities</p>
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Design</h3>
+                    <ul>
+                        <li>Adobe Photoshop</li>
+                        <li>Adobe Illustrator</li>
+                        <li>Adobe InDesign</li>
+                        <li>Figma</li>
+                        <li>Procreate</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Specialisms</h3>
+                    <ul>
+                        <li>Brand Identity</li>
+                        <li>Packaging Design</li>
+                        <li>UI/UX Design</li>
+                        <li>Typography</li>
+                        <li>Social Media Graphics</li>
+                        <li>Illustration</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Process</h3>
+                    <ul>
+                        <li>Mood Boards</li>
+                        <li>Concept Development</li>
+                        <li>Brand Guidelines</li>
+                        <li>Client Communication</li>
+                        <li>Project Ownership</li>
+                        <li>AI Assisted Design</li>
+                    </ul>
+                </div>
             </div>
-
-            <div class="skill-card">
-                <h3>Development</h3>
-                <p>HTML</p>
-                <p>CSS</p>
-                <p>JavaScript</p>
-                <p>Git & GitHub</p>
-            </div>
-
-            <div class="skill-card">
-                <h3>Creative</h3>
-                <p>Brand Identity</p>
-                <p>Packaging</p>
-                <p>Animation</p>
-                <p>Fashion Design</p>
-            </div>
-
         </div>
-
     </section>
 
-    <!-- ================= PROJECTS ================= -->
-
+    <!-- PROJECTS -->
     <section id="projects" class="projects">
+        <div class="container">
+            <p class="section-pre">Selected Work</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
 
-        <h2>Featured Projects</h2>
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="images/lumiere-1.png" alt="Lumière Noire">
+                        <span class="project-placeholder">Lumière Noire</span>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-tag">Beauty · Brand Identity · Packaging</p>
+                        <h3>Lumière Noire</h3>
+                        <p>Luxury dark feminine skincare brand. Full identity system including packaging for Bio-Collagen Deep Mask and brand guidelines.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
+                </div>
 
-        <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <span class="project-placeholder">Noir</span>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-tag">Food & Beverage · Packaging</p>
+                        <h3>Noir</h3>
+                        <p>Premium dark chocolate brand packaging. Three product variants — dark, sea salt, and espresso. Minimal luxury aesthetic.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
+                </div>
 
-            <article class="project-card">
+                <div class="project-card">
+                    <div class="project-img">
+                        <span class="project-placeholder">MeFit</span>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-tag">Tech · UI/UX Design</p>
+                        <h3>MeFit</h3>
+                        <p>Sims-inspired fitness app with fruity aego aesthetic. Animated mini-me character tracks your body progress as you hit goals.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
+                </div>
 
-                <img src="images/project1.png"
-                     alt="Character Design">
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="images/Bopstarlogo.jpeg" alt="Bopstar Logo">
+                        <span class="project-placeholder">Bopstar</span>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-tag">Fashion · Brand Identity · Case Study</p>
+                        <h3>Bopstar</h3>
+                        <p>Real world brand built from scratch. Music, art, fashion and e-commerce — one complete brand world with a live Shopify store.</p>
+                        <a href="https://bettybop2000.live" class="project-link" target="_blank">Visit Live Site</a>
+                    </div>
+                </div>
 
-                <h3>Character Design</h3>
+                <div class="project-card">
+                    <div class="project-img">
+                        <span class="project-placeholder">Maison</span>
+                    </div>
+                    <div class="project-info">
+                        <p class="project-tag">Beauty · Campaign Design</p>
+                        <h3>Maison</h3>
+                        <p>Luxury fragrance campaign. Hero image, billboard, magazine ad and social assets. Full campaign concept and visual direction.</p>
+                        <a href="#" class="project-link">View Case Study</a>
+                    </div>
+                </div>
 
-                <p>
-                    Original character concept inspired by retro animation,
-                    showcasing illustration and visual storytelling.
-                </p>
+            </div>
+        </div>
+    </section>
 
-            </article>
+    <!-- SERVICES -->
+    <section id="services" class="services">
+        <div class="container">
+            <p class="section-pre">Work With Me</p>
+            <h2 class="section-title">Services</h2>
 
-            <a href="lumiere-noire.html" class="project-card">
+            <p class="services-intro">From first impression to full empire — strategic design for brands that mean business. Based in London. Working globally.</p>
 
-                <img src="images/project2.png"
-                     alt="Lumière Noire Brand Identity">
+            <!-- PACKAGES -->
+            <div class="packages-grid">
 
-                <h3>Lumi&egrave;re Noire</h3>
+                <div class="package-card">
+                    <p class="package-name">Starter</p>
+                    <h3 class="package-title">The First Impression</h3>
+                    <p class="package-price">£299</p>
+                    <p class="package-turnaround">Turnaround: 5–7 days</p>
+                    <p class="package-desc">For new businesses and personal brands that need a strong, professional foundation to launch from.</p>
+                    <ul class="package-features">
+                        <li>Logo design — 2 concepts, 2 revision rounds</li>
+                        <li>Colour palette — 4 colours with hex codes</li>
+                        <li>Typography selection — primary and secondary</li>
+                        <li>Brand guidelines — 1 page quick reference</li>
+                        <li>Final files — PNG, SVG and PDF</li>
+                    </ul>
+                    <a href="mailto:bopstarcontact@gmail.com" class="btn btn-secondary" style="display:block;text-align:center;">Enquire</a>
+                </div>
 
-                <p>
-                    Brand identity, packaging direction and social strategy
-                    for a luxury night-time skincare ritual.
-                </p>
+                <div class="package-card featured">
+                    <div class="package-badge">Most Popular</div>
+                    <p class="package-name">Brand</p>
+                    <h3 class="package-title">The Full Identity</h3>
+                    <p class="package-price">£599</p>
+                    <p class="package-turnaround">Turnaround: 10–14 days</p>
+                    <p class="package-desc">For businesses ready to show up consistently and professionally across every touchpoint.</p>
+                    <ul class="package-features">
+                        <li>Everything in The First Impression</li>
+                        <li>Full logo suite — primary, secondary and icon</li>
+                        <li>Extended brand guidelines — up to 6 pages</li>
+                        <li>3 custom social media templates</li>
+                        <li>Business card design</li>
+                        <li>Brand pattern or texture</li>
+                        <li>3 revision rounds</li>
+                    </ul>
+                    <a href="mailto:bopstarcontact@gmail.com" class="btn btn-primary" style="display:block;text-align:center;">Enquire</a>
+                </div>
 
-            </a>
+                <div class="package-card">
+                    <p class="package-name">Empire</p>
+                    <h3 class="package-title">The Whole World</h3>
+                    <p class="package-price">£1,200</p>
+                    <p class="package-turnaround">Turnaround: 21 days</p>
+                    <p class="package-desc">For brands that need everything built properly from the ground up. Identity, packaging, digital — all of it.</p>
+                    <ul class="package-features">
+                        <li>Everything in The Full Identity</li>
+                        <li>Packaging design — up to 2 products</li>
+                        <li>UI design — up to 3 screens</li>
+                        <li>6 custom social media templates</li>
+                        <li>Full brand guidelines — up to 12 pages</li>
+                        <li>Pitch deck template</li>
+                        <li>5 revision rounds</li>
+                        <li>30 days post-delivery support</li>
+                    </ul>
+                    <a href="mailto:bopstarcontact@gmail.com" class="btn btn-secondary" style="display:block;text-align:center;">Enquire</a>
+                </div>
 
-            <article class="project-card">
+            </div>
 
-                <img src="images/project3.gif"
-                     alt="UI Design">
+            <!-- ADD-ONS -->
+            <div class="addons-section">
+                <div class="addons-header">
+                    <h3>Add-Ons</h3>
+                    <p>Need something extra? Build your package.</p>
+                </div>
+                <div class="addons-grid">
+                    <div class="addon-item"><span class="addon-name">Extra logo concept</span><span class="addon-price">£50</span></div>
+                    <div class="addon-item"><span class="addon-name">Additional revision round</span><span class="addon-price">£40</span></div>
+                    <div class="addon-item"><span class="addon-name">Extra packaging product</span><span class="addon-price">£150</span></div>
+                    <div class="addon-item"><span class="addon-name">Social media template</span><span class="addon-price">£25</span></div>
+                    <div class="addon-item"><span class="addon-name">Additional UI screen</span><span class="addon-price">£75</span></div>
+                    <div class="addon-item"><span class="addon-name">Brand guidelines extra page</span><span class="addon-price">£30</span></div>
+                    <div class="addon-item"><span class="addon-name">Rush delivery</span><span class="addon-price">£100</span></div>
+                    <div class="addon-item"><span class="addon-name">Mood board & creative direction</span><span class="addon-price">£80</span></div>
+                    <div class="addon-item"><span class="addon-name">Brand audit & recommendations</span><span class="addon-price">£120</span></div>
+                    <div class="addon-item"><span class="addon-name">Logo design only</span><span class="addon-price">from £150</span></div>
+                    <div class="addon-item"><span class="addon-name">Packaging design (1 product)</span><span class="addon-price">from £250</span></div>
+                    <div class="addon-item"><span class="addon-name">UI design (up to 5 screens)</span><span class="addon-price">from £350</span></div>
+                    <div class="addon-item"><span class="addon-name">Social media pack (6 graphics)</span><span class="addon-price">from £120</span></div>
+                    <div class="addon-item"><span class="addon-name">Brand guidelines only</span><span class="addon-price">from £180</span></div>
+                </div>
+            </div>
 
-                <h3>UI / UX Design</h3>
+            <!-- HOW IT WORKS -->
+            <div class="how-it-works">
+                <h3>How It Works</h3>
+                <p>Simple. Straightforward. No surprises.</p>
+                <div class="steps-grid">
+                    <div class="step">
+                        <span class="step-num">01</span>
+                        <p class="step-title">Enquire</p>
+                        <p>Send me your project details. Response within 48 hours.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">02</span>
+                        <p class="step-title">Brief</p>
+                        <p>We agree scope, timeline and package. 50% deposit confirms your spot.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">03</span>
+                        <p class="step-title">Design</p>
+                        <p>I research, concept and design. You review at each stage.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">04</span>
+                        <p class="step-title">Deliver</p>
+                        <p>Final files in your inbox. Remaining 50% on delivery.</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-num">05</span>
+                        <p class="step-title">Done</p>
+                        <p>You walk away with everything you need.</p>
+                    </div>
+                </div>
+            </div>
 
-                <p>
-                    Mobile application concepts and e-commerce interfaces
-                    designed in Figma.
-                </p>
-
-            </article>
-
-            <article class="project-card">
-
-                <img src="images/project4.png"
-                     alt="Fashion Design">
-
-                <h3>Fashion Design</h3>
-
-                <p>
-                    Handmade garments exploring pattern cutting,
-                    sewing and contemporary styling.
-                </p>
-
-            </article>
+            <!-- CTA -->
+            <div class="services-cta">
+                <h3>Ready to build something that lasts?</h3>
+                <p>Based in London. Working globally. Response within 48 hours.</p>
+                <a href="mailto:bopstarcontact@gmail.com" class="btn btn-primary">Get In Touch</a>
+            </div>
 
         </div>
-
     </section>
 
-    <!-- ================= CONTACT ================= -->
-
+    <!-- CONTACT -->
     <section id="contact" class="contact">
-
-        <h2>Let's Work Together</h2>
-
-        <p>
-            Interested in collaborating or have a project in mind?
-            I'd love to hear from you.
-        </p>
-
-        <a href="mailto:Bopstarcontact@gmail.com" class="btn">
-            Get In Touch
-        </a>
-
+        <div class="container">
+            <p class="section-pre">Get In Touch</p>
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Work Together</h3>
+                    <p>For project enquiries, collaborations and applications — get in touch directly. I respond to every message within 48 hours.</p>
+                    <a href="mailto:bopstarcontact@gmail.com" class="contact-email">bopstarcontact@gmail.com</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/bettybop2000" class="social-link" target="_blank">Instagram</a>
+                    <a href="https://www.tiktok.com/@bettybop2000" class="social-link" target="_blank">TikTok</a>
+                    <a href="https://figma.com/file/St8fz3Ck5yWm7QQcPa10Si" class="social-link" target="_blank">Figma</a>
+                    <a href="https://bettybop2000.live" class="social-link" target="_blank">Bopstar</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <p>
-            © 2026 Olufolajimi Dada | Designed & Developed by Me
-        </p>
-
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Olufolajimi Dada. All rights reserved.</p>
+        <p class="footer-script">Design with intention.</p>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
 
 </body>
 </html>
