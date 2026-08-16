@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BettybopAnimation Show — Case Study | Olufolajimi Dada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #080808;
+            --dark: #0d0d0d;
+            --dark2: #111111;
+            --gold: #c9a96e;
+            --white: #ffffff;
+            --gray: #666666;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* NAV */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8,8,8,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--gold); }
+
+        /* HERO */
+        .case-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 140px 40px 80px;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(201,169,110,0.06) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .case-tag {
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .case-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {}
+
+        .meta-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .meta-value {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* CONTENT */
+        .case-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .case-section {
+            margin-bottom: 80px;
+        }
+
+        .case-section-label {
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .case-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .case-section p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .case-section p:last-child { margin-bottom: 0; }
+
+        /* IMAGE PLACEHOLDER */
+        .case-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px 0;
+            overflow: hidden;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .case-image-placeholder {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: rgba(201,169,110,0.2);
+        }
+
+        .case-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin: 60px 0;
+        }
+
+        .case-image-grid .case-image {
+            margin: 0;
+            aspect-ratio: 1;
+        }
+
+        /* QUOTE */
+        .case-quote {
+            border-left: 1px solid var(--gold);
+            padding: 30px 40px;
+            margin: 60px 0;
+            background: var(--dark2);
+        }
+
+        .case-quote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* TAGS */
+        .case-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .case-tag-pill {
+            padding: 6px 16px;
+            border: 1px solid rgba(201,169,110,0.3);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(201,169,110,0.8);
+        }
+
+        /* DELIVERABLES */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2px;
+            margin-top: 30px;
+        }
+
+        .deliverable-item {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.1);
+            padding: 25px;
+        }
+
+        .deliverable-item h4 {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .deliverable-item p {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* FIGMA LINK */
+        .figma-cta {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.2);
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0 0;
+        }
+
+        .figma-cta h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .figma-cta p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--gold); color: #000; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* NAV BETWEEN PROJECTS */
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .project-nav a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .project-nav a:hover { color: var(--gold); }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(201,169,110,0.1);
+        }
+
+        .footer p { font-size: 0.75rem; color: var(--gray); }
+
+        @media (max-width: 768px) {
+            .case-content { padding: 60px 25px; }
+            .case-hero { padding: 120px 25px 60px; }
+            .case-meta { gap: 30px; }
+            .case-image-grid { grid-template-columns: 1fr; }
+            .nav-container { padding: 18px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Olufolajimi</a>
+            <a href="index.html" class="nav-back">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="case-hero">
+        <div class="hero-content">
+            <span class="case-tag">Animation · Character Design · Social Content</span>
+            <h1 class="case-title">BettybopAnimation<br>Show</h1>
+            <div class="case-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">2D Animation · Talk Show</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">Procreate · CapCut</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Platform</span>
+                    <span class="meta-value">TikTok · Social Media</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Style</span>
+                    <span class="meta-value">Retro Futuristic · 2D</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="case-content">
+
+        <!-- OVERVIEW -->
+        <div class="case-section">
+            <span class="case-section-label">Overview</span>
+            <h2>The Concept</h2>
+            <p>BettybopAnimation Show is a 2D animated talk show format built around a single character — Bettybop2000. Think Daria meets Downtown meets the TikTok creator who just talks directly at the camera about whatever is on their mind. Random thoughts. Pressing issues. Delivered with dry, sardonic humour that makes you laugh before you've realised what happened.</p>
+            <p>The show lives at the intersection of retro and futuristic — a visual language that feels like it was made in another era but couldn't exist without now. Every episode is a one-person performance. No guests. No sets. Just the character, the viewer, and whatever Bettybop has decided is worth saying today.</p>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="case-image">
+            <span class="case-image-placeholder">Character Design</span>
+        </div>
+
+        <!-- CONCEPT -->
+        <div class="case-section">
+            <span class="case-section-label">The Brief</span>
+            <h2>Creative Direction</h2>
+            <p>The creative challenge was building a character strong enough to carry a show alone. No supporting cast. No recurring plot. Just a personality so distinct that people come back for the next episode not because of what happens but because of who is speaking.</p>
+            <p>Inspiration came from Total Drama Island's bold character design — strong line work, expressive features, silhouettes that read instantly. Daria and MTV's Downtown shaped the tone — smart, deadpan, never trying too hard. The kind of humour that respects the audience's intelligence.</p>
+            <p>The retro-futuristic aesthetic was a deliberate choice — it signals that this show exists outside of any particular moment. Not nostalgic. Not trend-chasing. Timeless in its weirdness.</p>
+        </div>
+
+        <div class="case-quote">
+            <p>"A single character. Direct to camera. Whatever Bettybop has decided matters today — random thoughts, pressing issues, delivered with the kind of humour that makes you feel like you're in on something."</p>
+        </div>
+
+        <!-- CHARACTER -->
+        <div class="case-section">
+            <span class="case-section-label">Character Design</span>
+            <h2>Bettybop2000</h2>
+            <p>The character was designed from the ground up in Procreate. Strong clean line work was the foundation — every feature drawn with intention, nothing accidental. Smooth curves balanced by sharp details. A silhouette that reads at thumbnail size on a phone screen.</p>
+            <p>The retro-futuristic styling runs through everything — the proportions, the colour palette, the way the character holds themselves. There is an oddball quality to the design that is entirely deliberate. Bettybop2000 is not trying to be relatable. She is trying to be undeniable.</p>
+        </div>
+
+        <!-- IMAGE GRID -->
+        <div class="case-image-grid">
+            <div class="case-image">
+                <span class="case-image-placeholder">Character — Front</span>
+            </div>
+            <div class="case-image">
+                <span class="case-image-placeholder">Character — Detail</span>
+            </div>
+        </div>
+
+        <!-- PROCESS -->
+        <div class="case-section">
+            <span class="case-section-label">Process</span>
+            <h2>How It Was Made</h2>
+            <p>Every episode was created entirely in Procreate — drawn frame by frame, exported and edited in CapCut. The animation style prioritises expressiveness over technical complexity. Smooth features, strong mouth and eye movement, enough motion to feel alive without losing the hand-drawn quality that makes it distinctive.</p>
+            <p>The talk show format was chosen specifically because it is the most honest format for what the show is — one person with something to say. It strips away everything unnecessary and puts the character and the writing at the centre. If those two things work, the show works.</p>
+            <p>Social content was developed alongside the animation — stills, character assets, promotional graphics — all designed to perform on TikTok where the audience actually lives.</p>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="case-image">
+            <span class="case-image-placeholder">Animation Still</span>
+        </div>
+
+        <!-- DELIVERABLES -->
+        <div class="case-section">
+            <span class="case-section-label">Deliverables</span>
+            <h2>What Was Created</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-item">
+                    <h4>Character Design</h4>
+                    <p>Full original character — Bettybop2000</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>2D Animation</h4>
+                    <p>Frame by frame animation in Procreate</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>Social Content</h4>
+                    <p>TikTok ready episodes and promotional assets</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>Visual Identity</h4>
+                    <p>Show aesthetic — retro futuristic style system</p>
+                </div>
+            </div>
+
+            <div class="case-tags" style="margin-top:40px;">
+                <span class="case-tag-pill">2D Animation</span>
+                <span class="case-tag-pill">Character Design</span>
+                <span class="case-tag-pill">Procreate</span>
+                <span class="case-tag-pill">CapCut</span>
+                <span class="case-tag-pill">Retro Futuristic</span>
+                <span class="case-tag-pill">Social Content</span>
+                <span class="case-tag-pill">Talk Show Format</span>
+            </div>
+        </div>
+
+        <!-- FIGMA / PORTFOLIO LINK -->
+        <div class="figma-cta">
+            <h3>See the full project</h3>
+            <p>View character sheets, animation frames and social assets in the full presentation.</p>
+            <a href="assets/bettybop-animation.pdf" class="btn btn-primary">View Presentation</a>
+        </div>
+
+    </div>
+
+    <!-- PROJECT NAV -->
+    <div class="project-nav">
+        <a href="index.html">← All Projects</a>
+        <a href="lumiere-noire.html">Lumière Noire →</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 Olufolajimi Dada. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
