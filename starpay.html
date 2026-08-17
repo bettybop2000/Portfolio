@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarPay — Case Study | Olufolajimi Dada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #080808;
+            --dark: #0d0d0d;
+            --dark2: #111111;
+            --gold: #c9a96e;
+            --white: #ffffff;
+            --gray: #666666;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(8,8,8,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--gold); }
+
+        .case-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 140px 40px 80px;
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .case-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 70% 50%, rgba(201,169,110,0.06) 0%, transparent 60%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .case-tag {
+            font-size: 0.65rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .case-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            line-height: 1;
+            margin-bottom: 30px;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .meta-label {
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .meta-value {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .case-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .case-section { margin-bottom: 80px; }
+
+        .case-section-label {
+            font-size: 0.6rem;
+            letter-spacing: 5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .case-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .case-section p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .case-section p:last-child { margin-bottom: 0; }
+
+        .case-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px 0;
+            overflow: hidden;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .case-image-placeholder {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 2rem;
+            color: rgba(201,169,110,0.2);
+        }
+
+        .case-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin: 60px 0;
+        }
+
+        .case-image-grid .case-image {
+            margin: 0;
+            aspect-ratio: 9/16;
+        }
+
+        .case-quote {
+            border-left: 1px solid var(--gold);
+            padding: 30px 40px;
+            margin: 60px 0;
+            background: var(--dark2);
+        }
+
+        .case-quote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin: 60px 0;
+        }
+
+        .screen-item {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.1);
+            aspect-ratio: 9/16;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        .screen-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .screen-label {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2px;
+            margin-top: 30px;
+        }
+
+        .deliverable-item {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.1);
+            padding: 25px;
+        }
+
+        .deliverable-item h4 {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .deliverable-item p {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .case-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .case-tag-pill {
+            padding: 6px 16px;
+            border: 1px solid rgba(201,169,110,0.3);
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(201,169,110,0.8);
+        }
+
+        .figma-cta {
+            background: var(--dark2);
+            border: 1px solid rgba(201,169,110,0.2);
+            padding: 60px 40px;
+            text-align: center;
+            margin: 80px 0 0;
+        }
+
+        .figma-cta h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .figma-cta p {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--gold); color: #000; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+        .project-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(201,169,110,0.15);
+        }
+
+        .project-nav a {
+            text-decoration: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .project-nav a:hover { color: var(--gold); }
+
+        .footer {
+            background: var(--black);
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid rgba(201,169,110,0.1);
+        }
+
+        .footer p { font-size: 0.75rem; color: var(--gray); }
+
+        @media (max-width: 768px) {
+            .case-content { padding: 60px 25px; }
+            .case-hero { padding: 120px 25px 60px; }
+            .case-meta { gap: 30px; }
+            .case-image-grid { grid-template-columns: 1fr; }
+            .screens-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-container { padding: 18px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Olufolajimi</a>
+            <a href="index.html" class="nav-back">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <section class="case-hero">
+        <div class="hero-content">
+            <span class="case-tag">Fintech · UI/UX Design · App Concept</span>
+            <h1 class="case-title">StarPay</h1>
+            <div class="case-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">Fintech App UI</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">Figma</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Screens</span>
+                    <span class="meta-value">4 Screens Designed</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Focus</span>
+                    <span class="meta-value">Budgeting · Savings · Payments</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="case-content">
+
+        <div class="case-section">
+            <span class="case-section-label">Overview</span>
+            <h2>The Concept</h2>
+            <p>StarPay is a dark, minimal fintech app concept designed around one core idea — financial discipline as a lifestyle. Not just another payments app. A system that analyses your earnings, understands your goals, and builds a strict, personalised plan to get you there through structured budgeting, savings targets and controlled spending.</p>
+            <p>Most financial apps tell you what you've already spent. StarPay tells you what you need to do next. The distinction is the entire product.</p>
+        </div>
+
+        <div class="case-image">
+            <span class="case-image-placeholder">StarPay — Hero Screen</span>
+        </div>
+
+        <div class="case-section">
+            <span class="case-section-label">The Problem</span>
+            <h2>Why StarPay Exists</h2>
+            <p>Most people know they should save more. Most budgeting apps confirm that they aren't. What's missing is the gap between awareness and action — a system that doesn't just show you the problem but actively builds the solution around your specific income, goals and lifestyle.</p>
+            <p>StarPay was designed to close that gap. By combining earnings analysis, goal setting and automated plan generation into one dark, premium interface, it makes financial discipline feel less like restriction and more like direction.</p>
+        </div>
+
+        <div class="case-quote">
+            <p>"Most financial apps tell you what you've already spent. StarPay tells you what to do next — a strict, personalised plan built around your income and your goals."</p>
+        </div>
+
+        <div class="case-section">
+            <span class="case-section-label">Design Direction</span>
+            <h2>Visual Language</h2>
+            <p>The visual direction was deliberately dark and minimal — financial tools carry weight and trust, and the aesthetic needed to reflect that. No playful colours. No cartoon illustrations. A restrained palette, precise typography, and enough negative space to let the data breathe.</p>
+            <p>The dark interface also serves a functional purpose — financial information is sensitive, and a dark UI creates an instinctive sense of privacy and seriousness that lighter interfaces don't.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="case-section-label">The Screens</span>
+            <h2>Four Screens. One System.</h2>
+            <p>Four key screens were designed to map the complete user journey — from onboarding through to daily use.</p>
+
+            <div class="screens-grid">
+                <div class="screen-item">
+                    <span class="screen-label">Home</span>
+                </div>
+                <div class="screen-item">
+                    <span class="screen-label">Questionnaire</span>
+                </div>
+                <div class="screen-item">
+                    <span class="screen-label">Analysis</span>
+                </div>
+                <div class="screen-item">
+                    <span class="screen-label">Transactions</span>
+                </div>
+            </div>
+
+            <p><strong style="color:rgba(255,255,255,0.9);">Home</strong> — the dashboard. At a glance: current balance, savings progress, spending status and the plan. Everything the user needs to stay on track without digging through menus.</p>
+            <p><strong style="color:rgba(255,255,255,0.9);">Questionnaire</strong> — the onboarding intelligence. StarPay asks the right questions — income, fixed expenses, financial goals, timeline — before it builds anything. The plan is only as good as the information it's built on.</p>
+            <p><strong style="color:rgba(255,255,255,0.9);">Analysis</strong> — the engine. Where StarPay processes the questionnaire data and presents the user's personalised financial plan — broken into savings targets, spending limits and payment schedules.</p>
+            <p><strong style="color:rgba(255,255,255,0.9);">Transactions</strong> — the record. A clean, chronological view of every payment, categorised and tracked against the plan. Not just what happened — whether it was on plan or off it.</p>
+        </div>
+
+        <div class="case-image-grid">
+            <div class="case-image">
+                <span class="case-image-placeholder">Home Screen</span>
+            </div>
+            <div class="case-image">
+                <span class="case-image-placeholder">Analysis Screen</span>
+            </div>
+        </div>
+
+        <div class="case-section">
+            <span class="case-section-label">Process</span>
+            <h2>Designed in Figma</h2>
+            <p>The entire project was designed in Figma — from initial wireframes through to the final high fidelity screens. Components, auto layout and design tokens were used throughout to maintain consistency across all four screens and allow for easy iteration.</p>
+            <p>The focus was always on the user's relationship with their money — making complex financial data feel accessible, actionable and under control. Every design decision was made in service of that feeling.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="case-section-label">Deliverables</span>
+            <h2>What Was Designed</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-item">
+                    <h4>Home Screen</h4>
+                    <p>Dashboard with balance, savings and spending overview</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>Questionnaire</h4>
+                    <p>Onboarding flow to capture financial goals and income</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>Analysis</h4>
+                    <p>Personalised financial plan generation screen</p>
+                </div>
+                <div class="deliverable-item">
+                    <h4>Transactions</h4>
+                    <p>Categorised payment history tracked against the plan</p>
+                </div>
+            </div>
+
+            <div class="case-tags">
+                <span class="case-tag-pill">Fintech</span>
+                <span class="case-tag-pill">UI/UX Design</span>
+                <span class="case-tag-pill">Figma</span>
+                <span class="case-tag-pill">Dark UI</span>
+                <span class="case-tag-pill">Budgeting App</span>
+                <span class="case-tag-pill">Savings</span>
+                <span class="case-tag-pill">Payments</span>
+                <span class="case-tag-pill">App Concept</span>
+            </div>
+        </div>
+
+        <div class="figma-cta">
+            <h3>View the full design</h3>
+            <p>Explore all four screens, components and design decisions in Figma.</p>
+            <a href="#" class="btn btn-primary">View on Figma</a>
+        </div>
+
+    </div>
+
+    <div class="project-nav">
+        <a href="index.html">← All Projects</a>
+        <a href="bettybop-animation.html">BettybopAnimation Show →</a>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Olufolajimi Dada. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
