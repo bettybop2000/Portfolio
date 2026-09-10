@@ -13,7 +13,6 @@
             --dark: #0d0d0d;
             --dark2: #111111;
             --gold: #c9a96e;
-            --red: #8b0000;
             --white: #ffffff;
             --gray: #666666;
         }
@@ -29,7 +28,6 @@
             overflow-x: hidden;
         }
 
-        /* NAV */
         .navbar {
             position: fixed;
             top: 0;
@@ -67,7 +65,6 @@
 
         .nav-back:hover { color: var(--gold); }
 
-        /* HERO */
         .services-hero {
             min-height: 50vh;
             display: flex;
@@ -117,7 +114,6 @@
             line-height: 1.8;
         }
 
-        /* SECTIONS */
         section { padding: 100px 40px; }
         .container { max-width: 1200px; margin: 0 auto; }
 
@@ -151,8 +147,140 @@
             line-height: 1.8;
         }
 
+        /* ========== CO-FOUNDER SECTION ========== */
+        .cofounder {
+            background: var(--black);
+            padding: 100px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cofounder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cofounder-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--gold);
+            padding: 80px 70px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(201,169,110,0.04) 0%, rgba(8,8,8,0.95) 60%);
+        }
+
+        .cofounder-inner::before {
+            content: '✦';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--black);
+            color: var(--gold);
+            font-size: 1.2rem;
+            padding: 0 15px;
+        }
+
+        .cofounder-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            background: var(--gold);
+            color: #000;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            padding: 6px 20px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .cofounder-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .cofounder-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 35px;
+            display: block;
+        }
+
+        .cofounder-statement {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(201,169,110,0.2);
+        }
+
+        .cofounder-body {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.9;
+            margin-bottom: 50px;
+        }
+
+        .cofounder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2px;
+            margin-bottom: 50px;
+        }
+
+        .cofounder-col h4 {
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .cofounder-col ul {
+            list-style: none;
+        }
+
+        .cofounder-col ul li {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.6);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex;
+            gap: 8px;
+        }
+
+        .cofounder-col ul li::before {
+            content: '—';
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .cofounder-note {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            font-style: italic;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        .cofounder-cta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         /* PACKAGES */
-        .packages { background: var(--black); }
+        .packages { background: var(--dark2); }
 
         .packages-grid {
             display: grid;
@@ -162,7 +290,7 @@
         }
 
         .package-card {
-            background: var(--dark2);
+            background: var(--black);
             border: 1px solid rgba(201,169,110,0.12);
             padding: 50px 40px;
             transition: border-color 0.3s;
@@ -173,7 +301,7 @@
 
         .package-card.featured {
             border-color: var(--gold);
-            background: linear-gradient(135deg, rgba(201,169,110,0.04) 0%, var(--dark2) 100%);
+            background: linear-gradient(135deg, rgba(201,169,110,0.04) 0%, var(--black) 100%);
         }
 
         .package-badge {
@@ -257,7 +385,7 @@
         }
 
         .btn {
-            display: block;
+            display: inline-block;
             text-align: center;
             padding: 14px 30px;
             font-size: 0.7rem;
@@ -270,13 +398,14 @@
             border: none;
         }
 
+        .btn-block { display: block; }
         .btn-primary { background: var(--gold); color: #000; }
         .btn-primary:hover { background: var(--white); }
         .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
         .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
         /* STANDALONE */
-        .standalone { background: var(--dark2); }
+        .standalone { background: var(--black); }
 
         .standalone-grid {
             display: grid;
@@ -285,7 +414,7 @@
         }
 
         .standalone-item {
-            background: var(--black);
+            background: var(--dark2);
             border: 1px solid rgba(201,169,110,0.1);
             padding: 35px 30px;
             transition: border-color 0.3s;
@@ -316,7 +445,7 @@
         }
 
         /* ADDONS */
-        .addons { background: var(--black); }
+        .addons { background: var(--dark2); }
 
         .addons-grid {
             display: grid;
@@ -325,7 +454,7 @@
         }
 
         .addon-item {
-            background: var(--dark2);
+            background: var(--black);
             border: 1px solid rgba(201,169,110,0.08);
             padding: 22px 25px;
             display: flex;
@@ -351,8 +480,8 @@
             margin-left: 15px;
         }
 
-        /* HOW IT WORKS */
-        .process { background: var(--dark2); }
+        /* PROCESS */
+        .process { background: var(--black); }
 
         .steps-grid {
             display: grid;
@@ -361,7 +490,7 @@
         }
 
         .step {
-            background: var(--black);
+            background: var(--dark2);
             border: 1px solid rgba(201,169,110,0.08);
             padding: 35px 25px;
             text-align: center;
@@ -391,7 +520,7 @@
         }
 
         /* TERMS */
-        .terms { background: var(--black); }
+        .terms { background: var(--dark2); }
 
         .terms-grid {
             display: grid;
@@ -402,7 +531,7 @@
         }
 
         .term-item {
-            background: var(--dark2);
+            background: var(--black);
             border: 1px solid rgba(201,169,110,0.08);
             padding: 30px;
         }
@@ -422,7 +551,7 @@
         }
 
         /* CTA */
-        .cta-section { background: var(--dark2); }
+        .cta-section { background: var(--black); }
 
         .cta-box {
             max-width: 700px;
@@ -430,7 +559,7 @@
             text-align: center;
             border: 1px solid rgba(201,169,110,0.2);
             padding: 80px 60px;
-            background: var(--black);
+            background: var(--dark2);
         }
 
         .cta-box h2 {
@@ -457,7 +586,6 @@
             margin-bottom: 35px;
         }
 
-        /* FOOTER */
         .footer {
             background: var(--black);
             padding: 50px 40px;
@@ -485,19 +613,20 @@
 
         .footer-links a:hover { color: var(--gold); }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             section { padding: 70px 25px; }
             .nav-container { padding: 18px 25px; }
+            .cofounder-inner { padding: 50px 30px; }
+            .cofounder-grid { grid-template-columns: 1fr; gap: 30px; }
             .packages-grid { grid-template-columns: 1fr; }
             .steps-grid { grid-template-columns: 1fr; }
             .cta-box { padding: 50px 30px; }
+            .cofounder-cta { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">Olufolajimi</a>
@@ -505,25 +634,75 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="services-hero">
         <div class="hero-content">
             <span class="hero-pre">Work With Me</span>
             <h1 class="hero-title">Services & Pricing</h1>
-            <p class="hero-desc">From first impression to full empire — strategic design for brands that mean business. Based in London. Working globally.</p>
+            <p class="hero-desc">From first impression to full empire — strategic design and creative partnership for brands that mean business.</p>
+        </div>
+    </section>
+
+    <!-- CO-FOUNDER SECTION -->
+    <section class="cofounder">
+        <div class="cofounder-inner">
+            <div class="cofounder-badge">Premium Partnership</div>
+            <h2 class="cofounder-title">Creative Co-Founder</h2>
+            <span class="cofounder-subtitle">This is not a service. It is a partnership.</span>
+
+            <p class="cofounder-statement">If you are building something and need a creative co-founder — someone who thinks like a founder, designs like a professional, and invests in your vision as if it were their own — this is for you.</p>
+
+            <p class="cofounder-body">As your Creative Co-Founder I take full ownership of the creative direction of your business. Brand identity, product design, marketing strategy, content, visual world — all of it. I work alongside you from idea to launch and beyond, involved at every stage of growth. I apply my full skillset across design, strategy, planning and creative direction to build something that can compete with established brands. If and when I step down, I leave behind a complete, documented creative foundation that carries the business forward without me.</p>
+
+            <div class="cofounder-grid">
+                <div class="cofounder-col">
+                    <h4>What I Bring</h4>
+                    <ul>
+                        <li>Brand identity & visual direction</li>
+                        <li>UI/UX & digital product design</li>
+                        <li>Marketing strategy & content</li>
+                        <li>Business planning & creative strategy</li>
+                        <li>Full creative ownership from day one</li>
+                    </ul>
+                </div>
+                <div class="cofounder-col">
+                    <h4>This Is For</h4>
+                    <ul>
+                        <li>Startups needing creative leadership</li>
+                        <li>Entrepreneurs with a strong idea</li>
+                        <li>Companies building a new creative arm</li>
+                        <li>Founders who need a real partner</li>
+                    </ul>
+                </div>
+                <div class="cofounder-col">
+                    <h4>How It Works</h4>
+                    <ul>
+                        <li>Tell me what you're building</li>
+                        <li>We assess fit and alignment</li>
+                        <li>Agree terms and partnership structure</li>
+                        <li>I step in as Creative Co-Founder</li>
+                        <li>We build together</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="cofounder-note">Equity, retainer or hybrid arrangements considered. Every partnership is different — reach out with your idea, your stage, and what you're building.</p>
+
+            <div class="cofounder-cta">
+                <a href="mailto:bopstarcontact@gmail.com?subject=Creative Co-Founder Enquiry" class="btn btn-primary">Start the Conversation</a>
+                <a href="mailto:bopstarcontact@gmail.com?subject=Creative Co-Founder Enquiry" class="btn btn-secondary">bopstarcontact@gmail.com</a>
+            </div>
         </div>
     </section>
 
     <!-- PACKAGES -->
     <section class="packages">
         <div class="container">
-            <p class="section-pre">Packages</p>
+            <p class="section-pre">Design Packages</p>
             <h2 class="section-title">Choose Your Package</h2>
-            <p class="section-intro">Three clear entry points. Every package includes a dedicated design process, clear communication, and final files ready to use.</p>
+            <p class="section-intro">Three clear entry points for design projects. Every package includes a dedicated design process, clear communication, and final files ready to use.</p>
 
             <div class="packages-grid">
 
-                <!-- STARTER -->
                 <div class="package-card">
                     <span class="package-label">Starter</span>
                     <h3 class="package-title">The First Impression</h3>
@@ -537,10 +716,9 @@
                         <li>Brand guidelines — 1 page quick reference</li>
                         <li>Final files — PNG, SVG and PDF</li>
                     </ul>
-                    <a href="mailto:bopstarcontact@gmail.com?subject=Starter Package Enquiry" class="btn btn-secondary">Enquire Now</a>
+                    <a href="mailto:bopstarcontact@gmail.com?subject=Starter Package Enquiry" class="btn btn-secondary btn-block">Enquire Now</a>
                 </div>
 
-                <!-- BRAND -->
                 <div class="package-card featured">
                     <div class="package-badge">Most Popular</div>
                     <span class="package-label">Brand</span>
@@ -557,16 +735,15 @@
                         <li>Brand pattern or texture</li>
                         <li>3 revision rounds</li>
                     </ul>
-                    <a href="mailto:bopstarcontact@gmail.com?subject=Brand Package Enquiry" class="btn btn-primary">Enquire Now</a>
+                    <a href="mailto:bopstarcontact@gmail.com?subject=Brand Package Enquiry" class="btn btn-primary btn-block">Enquire Now</a>
                 </div>
 
-                <!-- EMPIRE -->
                 <div class="package-card">
                     <span class="package-label">Empire</span>
                     <h3 class="package-title">The Whole World</h3>
                     <div class="package-price">£1,200</div>
                     <p class="package-turnaround">Turnaround: 21 days</p>
-                    <p class="package-desc">For brands that need everything built properly from the ground up. Identity, packaging, digital — all of it.</p>
+                    <p class="package-desc">For brands that need everything built properly from the ground up.</p>
                     <ul class="package-features">
                         <li>Everything in The Full Identity</li>
                         <li>Packaging design — up to 2 products</li>
@@ -577,19 +754,19 @@
                         <li>5 revision rounds</li>
                         <li>30 days post-delivery support</li>
                     </ul>
-                    <a href="mailto:bopstarcontact@gmail.com?subject=Empire Package Enquiry" class="btn btn-secondary">Enquire Now</a>
+                    <a href="mailto:bopstarcontact@gmail.com?subject=Empire Package Enquiry" class="btn btn-secondary btn-block">Enquire Now</a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- STANDALONE SERVICES -->
+    <!-- STANDALONE -->
     <section class="standalone">
         <div class="container">
             <p class="section-pre">Standalone</p>
             <h2 class="section-title">Just Need One Thing?</h2>
-            <p class="section-intro">Not every project needs a full package. If you know exactly what you need, I offer standalone services with the same level of craft and attention.</p>
+            <p class="section-intro">Not every project needs a full package. Standalone services with the same level of craft and attention.</p>
 
             <div class="standalone-grid">
                 <div class="standalone-item">
@@ -626,7 +803,7 @@
         </div>
     </section>
 
-    <!-- ADD-ONS -->
+    <!-- ADDONS -->
     <section class="addons">
         <div class="container">
             <p class="section-pre">Add-Ons</p>
@@ -647,7 +824,7 @@
         </div>
     </section>
 
-    <!-- HOW IT WORKS -->
+    <!-- PROCESS -->
     <section class="process">
         <div class="container">
             <p class="section-pre">The Process</p>
@@ -678,7 +855,7 @@
                 <div class="step">
                     <span class="step-num">05</span>
                     <span class="step-title">Done</span>
-                    <p>You walk away with everything you need to show up like the brand you are.</p>
+                    <p>You walk away with everything you need.</p>
                 </div>
             </div>
         </div>
@@ -696,7 +873,7 @@
                 </div>
                 <div class="term-item">
                     <h4>Revisions</h4>
-                    <p>Revision rounds are included as stated per package. Additional rounds available at £40 each. Changes outside the original brief may incur additional fees.</p>
+                    <p>Revision rounds included as stated per package. Additional rounds available at £40 each.</p>
                 </div>
                 <div class="term-item">
                     <h4>Turnaround</h4>
@@ -717,19 +894,20 @@
                 <h2>Let's build something.</h2>
                 <p>Ready to start a project or have a question? Get in touch directly.</p>
                 <p>Response within 48 hours.</p>
+                <br>
                 <a href="mailto:bopstarcontact@gmail.com" class="cta-email">bopstarcontact@gmail.com</a>
                 <br>
-                <a href="mailto:bopstarcontact@gmail.com?subject=Project Enquiry" class="btn btn-primary" style="display:inline-block;margin-top:10px;">Start a Project</a>
+                <a href="mailto:bopstarcontact@gmail.com?subject=Project Enquiry" class="btn btn-primary">Start a Project</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <p>&copy; 2026 Olufolajimi Dada. All rights reserved.</p>
         <div class="footer-links">
             <a href="index.html">Portfolio</a>
             <a href="mailto:bopstarcontact@gmail.com">Email</a>
+            <a href="https://bettybop2000.live" target="_blank">Bopstar</a>
         </div>
     </footer>
 
